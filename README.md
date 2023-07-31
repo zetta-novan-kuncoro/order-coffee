@@ -1,27 +1,32 @@
-# OrderCoffee
+# Order Coffee
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+This is a dummy application created for the sake of learning Cypress in Zettacamp #4
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Node 18
+2. NPM 9
+3. Angular CLI 16
 
-## Code scaffolding
+## Local Development Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone this repository by running
 
-## Build
+      ```bash
+      git clone https://github.com/zetta-novan-kuncoro/order-coffee.git
+      ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Install dependencies
 
-## Running unit tests
+      ```bash
+      cd order-coffee
+      npm install
+      ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Run the local development server by running
 
-## Running end-to-end tests
+    ```bash
+    ng serve
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Open https://localhost:4200/ in the browser
