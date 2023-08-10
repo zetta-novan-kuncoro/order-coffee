@@ -1,6 +1,89 @@
-<div class="min-h-screen w-full flex items-center justify-center">
-  <h1 class="text-3xl font-bold">
-    Hello 世界
-  </h1>
-</div>
-<router-outlet></router-outlet>
+<ng-container *ngIf="profile()">
+  <nav class="navbar bg-neutral text-neutral-content">
+    <div class="navbar-start">
+      <a class="btn btn-ghost normal-case text-xl">Order Coffee</a>
+    </div>
+    <div class="navbar-end gap-2">
+      <a class="btn btn-ghost">Hi, {{ profile()?.name }}</a>
+      <button class="btn btn-error" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+  <div class="flex p-4 min-h-screen">
+    <div class="toast toast-top toast-center" *ngIf="messages().length">
+      <div class="alert alert-success" *ngFor="let message of messages()">
+        {{ message.icon }} {{ message.msg }}
+      </div>
+    </div>
+    <main class="flex-1">
+      <div class="card h-full">
+        <div class="card-body">
+          <h1 class="card-title">Menu</h1>
+          <ul class="flex flex-wrap gap-4">
+            <li class="card card-bordered w-60" *ngFor="let item of menu()">
+              <div class="card-body">
+                <h2 class="card-title">{{ item.name }}</h2>
+                <span>{{
+                  item.price | currency: 'Rp' : 'symbol' : '3.0'
+                }}</span>
+                <button class="btn" (click)="addToCart(item)">Tambah</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <aside class="max-w-screen-sm w-full flex-shrink-0">
+      <div class="card card-bordered h-full">
+        <div class="card-body">
+          <div class="card-title">Cart</div>
+          <ul class="h-full">
+            <li *ngFor="let item of cart()" class="flex items-baseline gap-2">
+              <input
+                type="number"
+                min="1"
+                class="input hover:input-bordered w-16"
+                [(ngModel)]="item.amount"
+              />
+              <span class="flex-1">{{ item.name }}</span>
+              <span class="relative">{{
+                item.amount * item.price | currency: 'Rp' : 'symbol' : '3.0'
+              }}</span>
+              <button
+                class="btn btn-circle btn-ghost btn-sm"
+                (click)="removeItemFromCart(item)"
+              >
+                X
+              </button>
+            </li>
+          </ul>
+          <div class="card-actions" *ngIf="cart().length">
+            <button
+              class="ml-auto btn btn-primary btn-wide"
+              (click)="checkout()"
+            >
+              Checkout {{ total() | currency: 'Rp' : 'symbol' : '3.0' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</ng-container>
+<ng-container *ngIf="!profile()">
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-2xl mb-2">Login</h1>
+          <input class="input" type="text" placeholder="Name" #inputRef />
+          <button
+            class="btn btn-wide btn-primary"
+            (click)="login(inputRef.value)"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
