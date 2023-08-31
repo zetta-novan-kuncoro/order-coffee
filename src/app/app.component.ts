@@ -89,7 +89,8 @@ export class AppComponent implements OnDestroy {
     this.saveCartToLocalStorageEffect.destroy()
   }
 
-  login(name: string) {
+  login(name: string, pw: string) {
+    if (!name || !pw) return
     this.profile.set({
       name,
     })

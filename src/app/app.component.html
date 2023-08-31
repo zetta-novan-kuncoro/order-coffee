@@ -113,19 +113,19 @@
             type="text"
             placeholder="Name"
             data-cy="input-name"
-            #inputRef
+            #nameInputRef
           />
           <input
             class="input"
             type="password"
             placeholder="Password"
             data-cy="input-password"
-            #inputRef
+            #passwordInputRef
           />
           <button
             class="btn btn-wide btn-primary"
             data-cy="btn-login"
-            (click)="login(inputRef.value)"
+            (click)="login(nameInputRef.value, passwordInputRef.value)"
           >
             Login
           </button>
