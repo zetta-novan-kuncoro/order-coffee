@@ -62,19 +62,27 @@ export class AppComponent implements OnDestroy {
   })
 
   getLocalStorageProfile(): Profile | null {
-    const profile = JSON.parse(localStorage.getItem('profile') || '')
-    if (profile?.name) {
-      return profile
+    try {
+      const profile = JSON.parse(localStorage.getItem('profile') || '')
+      if (profile?.name) {
+        return profile
+      }
+      return null
+    } catch(error) {
+      return null
     }
-    return null
   }
 
   getLocalStorageCart(): CartItem[] {
-    const cart = JSON.parse(localStorage.getItem('cart') || '')
-    if (Array.isArray(cart)) {
-      return cart
+    try {
+      const cart = JSON.parse(localStorage.getItem('cart') || '')
+      if (Array.isArray(cart)) {
+        return cart
+      }
+      return []
+    } catch(error) {
+      return []
     }
-    return []
   }
 
   ngOnDestroy(): void {
